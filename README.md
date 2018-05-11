@@ -1,0 +1,47 @@
+# Projects
+GERMAN POWER GRID
+By Dhruv Ghadia & Vignesh Kumar
+
+Description:
+The weighted undirected German power grid network, in which nodes (plants, generators, substations and auxillary t nodes) are connected based on the presence of transmission lines, weights are basically the no. of multiedges present between the nodes. Further, the node data contains the fuel source or input, geographical location, and type of node; and the edge data contains the source node and end node details of the link as well as the type of supply (220kv domestic or 380kv industrial supply) and the reluctance of the links.
+
+Nodes: 495
+Edges: 700
+Diameter: 23 
+Average degree: 2
+maximum degree: 14
+Clustering Coefficient: 0.78%
+
+
+
+To run the Grid analysis, do the following steps:
+
+1) Install Map visualizer by the following commands 
+	pip install gmplot
+	pip install geopy
+
+2) To create the 'Project_network.gml' file run Vertex.py file with the following files in the same directory
+	(i) generators.csv
+	(ii) links_de_power_151109.csv
+	(iii) lines.csv
+	(iv) vertices_de_power_151109.csv
+
+3) Run German_power_grid_analysis.py to get the results of the analysis; modularity_color_code.py and maps.py to get modularity of the network,and to visualize the grid in d3js and maps
+
+4) We get the following output files 
+community.txt - lists of the nodes in different communities
+print_top.html - Map visualizer for viewing the location of different centrality outputs
+hubs.html - Map visualizer for hubs location
+germany.html - Map visualizer for ploting the nodes and its links 
+
+Note:
+To get location address to print, uncomment the lines from 70 to 72 in German_power_grid_analysis.py
+
+Data Source:
+The data was obtained from the open source project titled 'Open Source Reference Model of European Transmission Networks for Scientific Analysis (acronym: SciGRID - Scientific grid)' by federal Ministry of Education and Research, Germany. The files containing the data were downloaded from Github repository (https://github.com/PyPSA/PyPSA/tree/master/examples/scigrid-de).
+
+Network Formation:
+The data is in .csv files, the node data is stored under “v_id” column in vertices_de_power_151109.csvdata and the edges are formed between the columns “v_id_1” and “v_id_2” from links_de_power151109.csvdata. The nodes will also carry additional data regarding the fuel source used for generation, Cost per KWH of power generated, these are columns from the generators.csv
+file. While the GPS data (for the nodes) is from the “lon” and “lat” columns from vertices_de_power_151109.csvdata file. The edges will also have additional data associated to
+columns “cables”, “wires”, which will help us differentiate between 3-phase and 1-phase lines these
+columns are in the links_de_power151109.csvdata.
